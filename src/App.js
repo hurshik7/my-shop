@@ -1,48 +1,26 @@
 import "./App.css";
-import { Navbar, Nav, Container, Row, Col } from "react-bootstrap";
+import { Container, Row} from "react-bootstrap";
+import MyNavBar from "./MyNavBar";
+import data from './data';
+import Product from "./Prouct";
+import { useState } from "react";
 
 function App() {
+  let [shoes, setShoes] = useState(data);
+
   return (
     <div className="App">
-      <Navbar bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand href="#home">My-shop</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-
+      <MyNavBar />
       <div className="main-bg"></div>
-
       <Container>
         <Row>
-          <Col xs>
-            <img
-              src="https://codingapple1.github.io/shop/shoes1.jpg"
-              width="80%" alt="first"
-            />
-            <h4>Title</h4>
-            <p>description</p>
-          </Col>
-          <Col xs>
-            <img
-              src="https://codingapple1.github.io/shop/shoes2.jpg"
-              width="80%" alt="second"
-            />
-            <h4>Title</h4>
-            <p>description</p>
-          </Col>
-          <Col xs>
-            <img
-              src="https://codingapple1.github.io/shop/shoes3.jpg"
-              width="80%" alt="third"
-            />
-            <h4>Title</h4>
-            <p>description</p>
-          </Col>
+          {
+            shoes.map((element, i) => {
+              return (
+                <Product img={i} data={shoes[i]} />
+              )
+            })
+          }
         </Row>
       </Container>
     </div>
