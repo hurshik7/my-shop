@@ -27,7 +27,7 @@ export default function Detail(props) {
 
   return (
     <div className="container">
-      {alert == true ? (
+      {alert === true ? (
         <div className="alert alert-warning">
           Get a discount by completing your order in 2 seconds!
         </div>
