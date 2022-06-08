@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { Nav } from "react-bootstrap";
 
 let BlackDiv = styled.div`
   background: grey;
@@ -10,11 +11,15 @@ let BlackDiv = styled.div`
 
 export default function Detail(props) {
   useEffect(() => {
-    setTimeout(() => {setAlert(false)}, 2000);
+    setTimeout(() => {
+      setAlert(false);
+    }, 2000);
   }, []);
 
   let [alert, setAlert] = useState(true);
   let id = useParams();
+  let [tab, setTab] = useState(0);
+
   if (parseInt(id.id) >= 3 || parseInt(id.id) < 0) {
     return <div>Wrong item</div>;
   }
@@ -50,6 +55,37 @@ export default function Detail(props) {
           <button className="btn btn-danger">Order</button>
         </div>
       </div>
+
+      <Nav variant="tabs" defaultActiveKey="link0">
+        <Nav.Item>
+          <Nav.Link eventKey="link0" onClick={() => {
+            setTab(0);
+          }}>button1</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link1" onClick={() => {
+            setTab(1);
+          }}>button2</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link2" onClick={() => {
+            setTab(2);
+          }}>button3</Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <TabContent tab={tab}/>
     </div>
   );
+}
+
+function TabContent(props) {
+  if (props.tab === 0) {
+    return <div>content1</div>
+  } 
+  if (props.tab === 1) {
+    return <div>content2</div>
+  }
+  if (props.tab === 2) {
+    return <div>content3</div>
+  }
 }

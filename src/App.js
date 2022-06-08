@@ -49,7 +49,7 @@ function App() {
                     }
                   });
                 }}>
-                  Button
+                  Load more
                 </Button>
                 : null 
               }
