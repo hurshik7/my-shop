@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
+// import styled from "styled-components";
 import { Nav } from "react-bootstrap";
+import "../App.css";
 
-let BlackDiv = styled.div`
-  background: grey;
-  padding: 20px;
-`;
+// let BlackDiv = styled.div`
+//   background: grey;
+//   padding: 20px;
+// `;
 
 export default function Detail(props) {
   useEffect(() => {
@@ -37,7 +38,7 @@ export default function Detail(props) {
           Get a discount by completing your order in 2 seconds!
         </div>
       ) : null}
-      <BlackDiv></BlackDiv>
+      {/* <BlackDiv></BlackDiv> */}
       <div className="row">
         <div className="col-md-6">
           <img
@@ -79,13 +80,17 @@ export default function Detail(props) {
 }
 
 function TabContent(props) {
-  if (props.tab === 0) {
-    return <div>content1</div>
-  } 
-  if (props.tab === 1) {
-    return <div>content2</div>
-  }
-  if (props.tab === 2) {
-    return <div>content3</div>
-  }
+
+  let [fade, setFade] = useState('');
+
+  useEffect(() => {
+    setTimeout(() => {setFade('end');}, 100);
+    return () => {
+      setFade(''); // cleanup function
+    }
+  }, [props.tab])
+
+  return (<div className={'start ' + fade}>
+    {[<div>Content1</div>, <div>Content2</div>, <div>Content3</div>][props.tab]}
+  </div>); 
 }
