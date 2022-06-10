@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 // import styled from "styled-components";
 import { Nav } from "react-bootstrap";
 import "../App.css";
+import { Context1 } from "../App";
 
 // let BlackDiv = styled.div`
 //   background: grey;
@@ -82,6 +83,7 @@ export default function Detail(props) {
 function TabContent(props) {
 
   let [fade, setFade] = useState('');
+  let statesFromApp = useContext(Context1);
 
   useEffect(() => {
     setTimeout(() => {setFade('end');}, 100);
@@ -91,6 +93,6 @@ function TabContent(props) {
   }, [props.tab])
 
   return (<div className={'start ' + fade}>
-    {[<div>Content1</div>, <div>Content2</div>, <div>Content3</div>][props.tab]}
+    {[<div>Content1 Stock:{statesFromApp.stock[0]}</div>, <div>Content2</div>, <div>Content3</div>][props.tab]}
   </div>); 
 }

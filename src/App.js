@@ -3,22 +3,29 @@ import { Container, Row, Button } from "react-bootstrap";
 import MyNavBar from "./MyNavBar";
 import data from "./data";
 import Product from "./Prouct";
-import { useState } from "react";
+import { createContext, useState } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
 import Detail from "./pages/Detail";
 import axios from "axios";
+
+export let Context1 = createContext();
 
 function App() {
   let [shoes, setShoes] = useState(data);
   let [btnClickCount, setBtnClickCount] = useState(2);
   let [btn, setBtn] = useState(true);
+  let [stock] = useState([10, 11, 12]);
 
   return (
     <div className="App">
       <MyNavBar />
 
       <Routes>
-        <Route path="/detail/:id" element={<Detail shoes={shoes}/>} />
+          <Route path="/detail/:id" element={
+          <Context1.Provider value={{stock, shoes}}>
+            <Detail shoes={shoes}/>
+          </Context1.Provider>
+          } />
         <Route
           path="/"
           element={
