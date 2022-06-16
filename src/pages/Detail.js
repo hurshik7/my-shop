@@ -60,39 +60,63 @@ export default function Detail(props) {
 
       <Nav variant="tabs" defaultActiveKey="link0">
         <Nav.Item>
-          <Nav.Link eventKey="link0" onClick={() => {
-            setTab(0);
-          }}>button1</Nav.Link>
+          <Nav.Link
+            eventKey="link0"
+            onClick={() => {
+              setTab(0);
+            }}
+          >
+            button1
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link1" onClick={() => {
-            setTab(1);
-          }}>button2</Nav.Link>
+          <Nav.Link
+            eventKey="link1"
+            onClick={() => {
+              setTab(1);
+            }}
+          >
+            button2
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link2" onClick={() => {
-            setTab(2);
-          }}>button3</Nav.Link>
+          <Nav.Link
+            eventKey="link2"
+            onClick={() => {
+              setTab(2);
+            }}
+          >
+            button3
+          </Nav.Link>
         </Nav.Item>
       </Nav>
-      <TabContent tab={tab}/>
+      <TabContent tab={tab} />
     </div>
   );
 }
 
 function TabContent(props) {
-
-  let [fade, setFade] = useState('');
+  let [fade, setFade] = useState("");
   let statesFromApp = useContext(Context1);
 
   useEffect(() => {
-    setTimeout(() => {setFade('end');}, 100);
+    setTimeout(() => {
+      setFade("end");
+    }, 100);
     return () => {
-      setFade(''); // cleanup function
-    }
-  }, [props.tab])
+      setFade(""); // cleanup function
+    };
+  }, [props.tab]);
 
-  return (<div className={'start ' + fade}>
-    {[<div>Content1 Stock:{statesFromApp.stock[0]}</div>, <div>Content2</div>, <div>Content3</div>][props.tab]}
-  </div>); 
+  return (
+    <div className={"start " + fade}>
+      {
+        [
+          <div>Content1 Stock:{statesFromApp.stock[0]}</div>,
+          <div>Content2</div>,
+          <div>Content3</div>,
+        ][props.tab]
+      }
+    </div>
+  );
 }
